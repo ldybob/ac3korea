@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/drawer_layout"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fitsSystemWindows="true" tools:openDrawer="start">
+    <RelativeLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="AC3KOREA"
+            android:textSize="50sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/logo"
+            android:textColor="@android:color/secondary_text_light"
+            android:text="@string/ac3_motto"
+            android:textSize="15sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom">
+            <EditText
+                android:id="@+id/member_id"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:hint="ID"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="25sp"
+                android:gravity="center_horizontal"/>
+
+            <EditText
+                android:id="@+id/member_pw"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/member_id"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:hint="PASSWORD"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="25sp"
+                android:gravity="center_horizontal"/>
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/member_pw"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="30sp"
+                android:text="LOGIN"/>
+
+            <TextView
+                android:id="@+id/descript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/btn_login"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@android:color/secondary_text_light"
+                android:text="@string/login_comment"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/descript"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@android:color/secondary_text_light"
+                android:text="Made by Chrono"
+                android:textSize="10sp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">AC3KOREA</string>
+
+    <string name="ac3_motto">함께하면 즐거운사람들:></string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+    <string name="complete">완료</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_hide">블랙맨 설정</string>
+    <string name="action_search">검색</string>
+    <string name="preparing">준비 중 입니다.</string>
+
+    <string name="search_title">제목</string>
+    <string name="search_content">본문</string>
+    <string name="search_reply">댓글</string>
+    <string name="search_reply_writer">댓글작성자</string>
+    <string name="search_writer">작성자</string>
+    <string name="search_id">아이디</string>
+    <string name="search_text_empty">검색어를 입력하지 않으셨거나 너무 짧습니다.</string>
+
+    <string name="login_comment">로그인 시 설정된 계정으로 자동로그인 됩니다.\n메뉴 > 로그아웃 시 다른계정으로 변경가능합니다.</string>
+    <string name="login_success_msg">로그인에 성공하였습니다.</string>
+    <string name="login_fail_msg">로그인에 실패하였습니다.</string>
+    <string name="network_fail_msg">인터넷 연결을 확인해 주세요.</string>
+    <string name="login_empty_msg">ID/PASSWORD를 입력하세요.</string>
+
+    <string name="nav_header_title">%s님 안녕하세요.</string>
+    <string name="nav_header_id">아이디 :</string>
+    <string name="nav_header_msg">쪽 지 :</string>
+    <string name="nav_header_point">포인트 :</string>
+    <string name="nav_header_nae">내 공 :</string>
+
+    <string name="nav_recent">나의 최근 글</string>
+    <string name="nav_scrab">스크랩</string>
+    <string name="nav_notice">공지사항</string>
+    <string name="nav_free">자유게시판</string>
+    <string name="nav_qna">질문과 답변</string>
+    <string name="nav_news">뉴스/시사</string>
+    <string name="nav_comic">만화/삽화</string>
+    <string name="nav_screenshot">스크린샷</string>
+    <string name="nav_kor_release">한국릴리즈</string>
+    <string name="nav_other_release">해외릴리즈</string>
+    <string name="nav_tv_release">티비릴리즈</string>
+
+    <string name="content_delete">글 삭제</string>
+    <string name="content_scrab">스크랩</string>
+    <string name="content_save_image">이미지 저장</string>
+    <string name="content_image_saving">다운로드 중입니다.</string>
+    <string name="content_scrab_complete">스크랩하였습니다.</string>
+
+    <string name="write_title">글 쓰기</string>
+    <string name="write_attach">첨부</string>
+    <string name="write_delete_msg">정말로 삭제하시겠습니까?</string>
+    <string name="write_dlg_msg">데이터 전송중...</string>
+    <string name="write_empty_title">제목을 입력하세요.</string>
+    <string name="write_empty_content">본문을 입력하세요.</string>
+    <string name="write_file_uploading">파일 업로드중입니다.</string>
+
+    <string name="hide_add">추가</string>
+    <string name="hide_remove">선택 삭제</string>
+    <string name="empty_edit_text">ID 혹은 이름을 입력하세요.</string>
+    <string name="hint_hide_input">ID 혹은 이름 입력</string>
+    <string name="hide_msg">블랙맨 설정 후\n리스트를 새로고침해야 적용됩니다.</string>
+    <string name="hide_reply_content">블랙 처리 된 글입니다.</string>
+
+    <string name="rereply_write">댓글쓰기</string>
+    <string name="reply_modify">댓글수정</string>
+    <string name="reply_delete">댓글삭제</string>
+    <string name="reply_write_hint">댓글쓰기</string>
+    <string name="reply_answer1">답변채택</string>
+    <string name="reply_answer2">감사내공</string>
+    <string name="reply_answer_msg1">정말로 답변채택을 하시겠습니까?</string>
+    <string name="reply_answer_msg2">정말로 감사내공을 주시겠습니까?</string>
+    <string name="reply_write_hint2">%s님의 댓글에 댓글쓰기</string>
+    <string name="reply_write">쓰기</string>
+    <string name="reply_empty_content">댓글 내용을 입력하세요.</string>
+</resources>

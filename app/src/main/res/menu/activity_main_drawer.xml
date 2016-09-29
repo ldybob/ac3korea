@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="개인메뉴">
+        <menu>
+            <item android:id="@+id/nav_recent" android:title="나의 최근 글"/>
+            <item android:id="@+id/nav_scrab" android:title="스크랩"/>
+        </menu>
+    </item>
+
+    <item android:title="커뮤니티">
+        <menu>
+            <item android:id="@+id/nav_notice" android:title="공지사항"/>
+            <item android:id="@+id/nav_free" android:title="자유게시판"/>
+            <item android:id="@+id/nav_qna" android:title="질문과 답변"/>
+            <item android:id="@+id/nav_news" android:title="뉴스/시사"/>
+            <item android:id="@+id/nav_comic" android:title="만화/삽화"/>
+        </menu>
+    </item>
+
+    <item android:title="릴리즈 정보">
+        <menu>
+            <item android:id="@+id/nav_screenshot" android:title="스크린샷"/>
+            <item android:id="@+id/nav_kor_release" android:title="한국릴리즈"/>
+            <item android:id="@+id/nav_other_release" android:title="해외릴리즈"/>
+            <item android:id="@+id/nav_tv_release" android:title="티비릴리즈"/>
+        </menu>
+    </item>
+</menu>

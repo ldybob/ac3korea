@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="3dp">
+
+    <ImageView
+        android:id="@+id/space"
+        android:layout_width="0dp"
+        android:layout_height="1dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/space">
+        <TextView
+            android:id="@+id/txt_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:background="#f9f6d2"
+            android:visibility="gone"/>
+        <RelativeLayout
+            android:id="@+id/layout_upper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_answer">
+            <ImageView
+                android:id="@+id/img_member_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/txt_member_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:layout_toRightOf="@+id/img_member_icon"
+                android:layout_marginLeft="3dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:text="IDIDIDIDIDID"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/txt_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@android:color/black"
+                android:gravity="right"
+                android:textSize="14sp"
+                android:text="00:00:00"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/reply_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_upper"
+            android:layout_toLeftOf="@+id/rereply_btn"
+            android:textIsSelectable="true"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="contentaaaaaaaaaaaaaaaa"/>
+
+        <Button
+            android:id="@+id/rereply_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_mode_comment_grey600_48dp"
+            android:layout_alignTop="@+id/reply_content"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+</RelativeLayout>

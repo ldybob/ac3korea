@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/action_search_title" android:title="@string/search_title"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_search_content" android:title="@string/search_content"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_search_reply" android:title="@string/search_reply"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_search_reply_writer" android:title="@string/search_reply_writer"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_search_writer" android:title="@string/search_writer"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_search_id" android:title="@string/search_id"
+        android:orderInCategory="100" app:showAsAction="never" />
+</menu>
