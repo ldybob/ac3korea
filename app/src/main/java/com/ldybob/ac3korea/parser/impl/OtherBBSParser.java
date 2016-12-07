@@ -3,6 +3,7 @@ package com.ldybob.ac3korea.parser.impl;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.ldybob.ac3korea.Const;
 import com.ldybob.ac3korea.ListItem;
 import com.ldybob.ac3korea.R;
 import com.ldybob.ac3korea.ReplyItem;
@@ -28,7 +29,7 @@ public class OtherBBSParser extends AbsParser{
     private final String TAG = "OtherBBSParser";
 
     private Context mContext;
-    private final String MAIN_URL = "https://www.ac3korea.com";
+    private final String MAIN_URL = Const.http + "www.ac3korea.com";
     private final String BOARD_URL = MAIN_URL + "/ac3korea?table=";
     private Util mUtil;
     private String boardID;
@@ -46,7 +47,7 @@ public class OtherBBSParser extends AbsParser{
         try {
             String urlString = BOARD_URL + boardID + "&p=" + pageNo;
             if (!searchText.isEmpty()) {
-                urlString = "https://www.ac3korea.com/ac3korea?table=" + boardID + "&where=" + searchWhere + "&keyword=" +
+                urlString = Const.http + "www.ac3korea.com/ac3korea?table=" + boardID + "&where=" + searchWhere + "&keyword=" +
                         URLEncoder.encode(searchText, "euc-kr") +
                         "&search_step=1&search_sql=" +
                         URLEncoder.encode(searchWhere + " LIKE '|||" + searchText + "|||'", "euc-kr") +

@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity
             strID = R.string.nav_other_release;
         } else if (mCurrentBoard.equals(BoardID.TV_RELEASE)) {
             strID = R.string.nav_tv_release;
+        } else if (mCurrentBoard.equals(BoardID.SCRAB)) {
+            strID = R.string.nav_scrab;
         }
         getSupportActionBar().setTitle(strID);
     }
@@ -413,45 +415,44 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         switch(id) {
             case R.id.nav_recent:
-//                getSupportActionBar().setTitle("나의 최근 글");
 //                Toast.makeText(mContext, "나의 최근 글", Toast.LENGTH_SHORT).show();
                 Toast.makeText(mContext, getString(R.string.preparing), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_scrab:
-//                getSupportActionBar().setTitle("스크랩");
-//                Toast.makeText(mContext, "스크랩", Toast.LENGTH_SHORT).show();
                 Toast.makeText(mContext, getString(R.string.preparing), Toast.LENGTH_SHORT).show();
+                // TODO: 스크랩 기능 추가 시 아래 주석 풀어야 함.
+//                navSelect(BoardID.SCRAB);
                 break;
             case R.id.nav_notice:
-//                navSelect(getString(R.string.nav_recent), BoardID.NOTICE);
+//                navSelect(BoardID.NOTICE);
                 Toast.makeText(mContext, getString(R.string.preparing), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_free:
-                navSelect(getString(R.string.nav_free), BoardID.FREE);
+                navSelect(BoardID.FREE);
                 break;
             case R.id.nav_qna:
-                navSelect(getString(R.string.nav_qna), BoardID.QNA);
+                navSelect(BoardID.QNA);
                 break;
             case R.id.nav_news:
-                navSelect(getString(R.string.nav_news), BoardID.NEWS);
+                navSelect(BoardID.NEWS);
                 break;
             case R.id.nav_comic:
-                navSelect(getString(R.string.nav_comic), BoardID.COMIC);
+                navSelect(BoardID.COMIC);
                 break;
             case R.id.nav_screenshot:
-                navSelect(getString(R.string.nav_screenshot), BoardID.SCREENSHOT);
+                navSelect(BoardID.SCREENSHOT);
 //                Toast.makeText(mContext, getString(R.string.preparing), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_kor_release:
-//                navSelect(getString(R.string.nav_kor_release), BoardID.KOR_RELEASE);
+//                navSelect(BoardID.KOR_RELEASE);
                 Toast.makeText(mContext, getString(R.string.preparing), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_other_release:
-//                navSelect(getString(R.string.nav_other_release), BoardID.OTHER_RELEASE);
+//                navSelect(BoardID.OTHER_RELEASE);
                 Toast.makeText(mContext, getString(R.string.preparing), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_tv_release:
-//                navSelect(getString(R.string.nav_tv_release), BoardID.TV_RELEASE);
+//                navSelect(BoardID.TV_RELEASE);
                 Toast.makeText(mContext, getString(R.string.preparing), Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -460,11 +461,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void navSelect(String title, String board_id) {
+    private void navSelect(String board_id) {
         mCurrentBoard = board_id;
         setTitle();
         ContentsLoad();
-//        Toast.makeText(mContext, title, Toast.LENGTH_SHORT).show();
     }
 
     private class ParsingMyInfoTask extends AsyncTask<Void, Void, MyInfo> {

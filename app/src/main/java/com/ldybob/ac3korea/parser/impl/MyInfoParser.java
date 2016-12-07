@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.ldybob.ac3korea.BoardID;
+import com.ldybob.ac3korea.Const;
 import com.ldybob.ac3korea.MyInfo;
 import com.ldybob.ac3korea.Repo;
 import com.ldybob.ac3korea.Util;
@@ -22,7 +23,7 @@ import java.util.List;
 public class MyInfoParser {
     private final String TAG = "MyInfoParser";
     Context mContext;
-    private final String MAIN_URL = "https://www.ac3korea.com";
+    private final String MAIN_URL = Const.http + "www.ac3korea.com";
     private final String BOARD_URL = MAIN_URL + "/ac3korea?table=";
 
     private Util mUtil;

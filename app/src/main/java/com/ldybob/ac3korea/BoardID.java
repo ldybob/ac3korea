@@ -10,4 +10,5 @@ public class BoardID {
     public static final String KOR_RELEASE = "korearip"; // 한국릴리즈
     public static final String OTHER_RELEASE = "ac3board"; // 해외릴리즈
     public static final String TV_RELEASE = "tvrip"; // 티비릴리즈
+    public static final String SCRAB = "Scrab";
 }

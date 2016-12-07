@@ -2,7 +2,6 @@ package com.ldybob.ac3korea.parser.impl;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.ldybob.ac3korea.Const;
 import com.ldybob.ac3korea.ListItem;
@@ -26,12 +25,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class QNABBSParser extends AbsParser{
-    private final String TAG = "QNABBSParser";
+public class ScrabParser extends AbsParser{
+    private final String TAG = "ScrabParser";
 
     private Context mContext;
     private final String MAIN_URL = Const.http + "www.ac3korea.com";
-    private final String BOARD_URL = MAIN_URL + "/ac3korea?table=";
+//    private final String BOARD_URL = MAIN_URL + "/ac3korea?table=";
     private Util mUtil;
 
     @Override
@@ -41,14 +40,7 @@ public class QNABBSParser extends AbsParser{
         mBBSList = new ArrayList<ListItem>();
 
         try {
-            String urlString = BOARD_URL + boardID + "&p=" + pageNo;
-            if (!searchText.isEmpty()) {
-                urlString = Const.http + "www.ac3korea.com/ac3korea?table=" + boardID + "&where=" + searchWhere + "&keyword=" +
-                        URLEncoder.encode(searchText, "euc-kr") +
-                        "&search_step=1&search_sql=" +
-                        URLEncoder.encode(searchWhere + " LIKE '|||" + searchText + "|||'", "euc-kr") +
-                        "&p=" + pageNo;
-            }
+            String urlString = Const.http + "www.ac3korea.com/mypage?query=scrab&p=" + pageNo;
 //            pageNo++;
             HttpPost httpPost = new HttpPost(urlString);
             if (Repo.getInstance(mContext).getHttpClient() == null) {
@@ -64,9 +56,9 @@ public class QNABBSParser extends AbsParser{
             for(Element e : list) {
                 if (AsyncTask.Status.RUNNING == task.getStatus()) {
                     String style = e.getAttributeValue("style");
-                    String align = e.getAttributeValue("align");
-                    String Class = e.getAttributeValue("class");
-                    if (style != null && align != null && Class == null && style.equals("height:26px") && align.equals("center")) { //게시판에서 글목록 내부 태그만 뽑아오는 부분
+                    String align = e.getAttributeValue("bgcolor");
+                    String bgcolor = e.getAttributeValue("class");
+                    if (style != null && align != null && bgcolor != null && style.equals("height:23px") && align.equals("center") && bgcolor.equals("#ffffff")) { //게시판에서 글목록 내부 태그만 뽑아오는 부분
                         ParsingBBSItem(e);
                     }
                 } else {

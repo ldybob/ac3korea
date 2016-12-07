@@ -4,6 +4,7 @@ import com.ldybob.ac3korea.BoardID;
 import com.ldybob.ac3korea.parser.impl.FreeBBSParser;
 import com.ldybob.ac3korea.parser.impl.OtherBBSParser;
 import com.ldybob.ac3korea.parser.impl.QNABBSParser;
+import com.ldybob.ac3korea.parser.impl.ScrabParser;
 
 public class ParserFactory {
     public static IPARSER getParser(String boardID) {
@@ -13,6 +14,8 @@ public class ParserFactory {
             return new QNABBSParser();
         } else if (boardID.equals(BoardID.NEWS) || boardID.equals(BoardID.COMIC) || boardID.equals(BoardID.SCREENSHOT)) {
             return new OtherBBSParser(boardID);
+        }else if (boardID.equals(BoardID.SCRAB)) {
+            return new ScrabParser();
         }
         return null;
     }

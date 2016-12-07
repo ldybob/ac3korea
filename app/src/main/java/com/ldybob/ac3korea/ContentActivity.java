@@ -1,14 +1,18 @@
 package com.ldybob.ac3korea;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -79,6 +83,8 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
     private boolean isReply = false;
     private boolean myContent = false;
     private ReplyType rType = ReplyType.NEW;
+
+    private final int MY_PERMISSION_REQUEST_STORAGE = 1;
 
     private getReplyTask replyTask;
 
@@ -198,7 +204,7 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         mReplyfake = (Button)findViewById(R.id.reply_fake);
         mReplyfake.setOnClickListener(onClickListener);
 
-        urlString = "https://www.ac3korea.com/ac3korea?table=" + boardID + "&query=view&uid=" + uID;
+        urlString = Const.http + "www.ac3korea.com/ac3korea?table=" + boardID + "&query=view&uid=" + uID;
 
 //        wb.loadData(str, "text/html", "euc-kr");
         getContentTask task = new getContentTask();
@@ -236,7 +242,13 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         int id = item.getItemId();
 
         if (id == R.id.action_save_image) {
-            mUtil.download(mClickedImageUri);
+            int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(this, getString(R.string.permission_check), Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST_STORAGE);
+            } else {
+                mUtil.download(mClickedImageUri);
+            }
         }
 
         return super.onContextItemSelected(item);
@@ -606,10 +618,11 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
                     @Override
                     public void run() {
 //                        wb.loadData("<iframe max-width=\"100%\" width=\"auto\" height=\"auto\" src=\"https://www.youtube.com/embed/VjcDHVg-u-c\" frameborder=\"0\" allowfullscreen>",  "text/html; charset=utf-8", "utf-8");
-                        String html = getHtmlData(e[0].toString());
+                        String html = e[0].toString();
                         if (html.indexOf("www.youtube.com/v/") >= 0) {
                             html = ChangeYouTube(e[0]);
                         }
+                        html = getHtmlData(html);
                         wb.loadData(html, "text/html; charset=utf-8", "utf-8");
                     }
                 });
@@ -620,7 +633,8 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
 
         private String ChangeYouTube(Element e) {
-            Source source = new Source(e.toString().replaceAll("</embed>", ""));
+//            Source source = new Source(e.toString().replaceAll("</embed>", ""));
+            Source source = new Source(e.toString());
             OutputDocument doc = new OutputDocument(source);
 //            List<Element> elements = source.getAllElements(HTMLElementName.OBJECT);
 //            for (Element el : elements) {
@@ -792,7 +806,7 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
                 "var z = y[i].getAttribute(\"src\");" +
                 "if ((z.indexOf(\"bbs/table/shaphwa/upload/\") >= 0)" +
                 "|| z.indexOf(\"bbs/table/screenshot/upload/\") >= 0) {" +
-                "y[i].setAttribute(\"src\", \"https://www.ac3korea.com/\" + z);" +
+                "y[i].setAttribute(\"src\", \"" + Const.http + "www.ac3korea.com/\" + z);" +
                 "}" +
                 "}" +
                 // - 스크린샷/만화 란에 이미지 첨부한 경우 url이 일부만 표시되어 변경

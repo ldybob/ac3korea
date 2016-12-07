@@ -70,18 +70,18 @@ public class Util {
 
     public boolean Login(String id, String pwd) {
 
-        String urlString = "https://www.ac3korea.com/lib/login";
+        String urlString = Const.http + "www.ac3korea.com/lib/login";
         String responseString = "";
         try {
             HttpPost httpPost = new HttpPost(urlString);
-            httpPost.setHeader("referer", "https://www.ac3korea.com");
+            httpPost.setHeader("referer", Const.http + "www.ac3korea.com");
 
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
             nameValuePairs.add(new BasicNameValuePair("MB_ID", id));
             nameValuePairs.add(new BasicNameValuePair("MB_PW", pwd));
             nameValuePairs.add(new BasicNameValuePair("x", "0"));
             nameValuePairs.add(new BasicNameValuePair("y", "0"));
-            nameValuePairs.add(new BasicNameValuePair("pwd", "https://ac3korea.com"));
+            nameValuePairs.add(new BasicNameValuePair("pwd", Const.http + "ac3korea.com"));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "EUC-KR"));
 
@@ -99,10 +99,10 @@ public class Util {
             e.printStackTrace();
         }
         if((responseString.indexOf("아이디나 비밀번호 입력이 잘못 되었습니다.") != -1)
-                || (responseString.indexOf("location.href='https://ac3korea.com';") == -1
+                || (responseString.indexOf("location.href='" + Const.http + "ac3korea.com';") == -1
                 || (responseString.indexOf("alert('탈퇴 회원입니다. 일주일이 지난 후 재가입 가능합니다") != -1))) {
             return false; // 로그인실패
-        } else if(responseString.indexOf("location.href='https://ac3korea.com';") > -1) {
+        } else if(responseString.indexOf("location.href='" + Const.http + "ac3korea.com';") > -1) {
             return true; // 로그인성공
         } else {
             return false;
@@ -174,8 +174,8 @@ public class Util {
         SharedPreferences pref = mContext.getSharedPreferences("pref", Activity.MODE_PRIVATE);
         String id = pref.getString("id", "");
         String pw = decrypt(pref.getString("pw", ""));
-        HttpPost httpPost = new HttpPost("https://www.ac3korea.com/bbs.php");
-        httpPost.setHeader("referer", "https://www.ac3korea.com/ac3korea?table=" + bbsID + "&query=write");
+        HttpPost httpPost = new HttpPost(Const.http + "www.ac3korea.com/bbs.php");
+        httpPost.setHeader("referer", Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&query=write");
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("action", "write_data"));
         nameValuePairs.add(new BasicNameValuePair("mbid", id));
@@ -191,7 +191,7 @@ public class Util {
         nameValuePairs.add(new BasicNameValuePair("BB_EMAIL", ""));
         nameValuePairs.add(new BasicNameValuePair("BB_CATEGORY", ""));
         nameValuePairs.add(new BasicNameValuePair("is_category", ""));
-        nameValuePairs.add(new BasicNameValuePair("BB_HOME_URL", "https://"));
+        nameValuePairs.add(new BasicNameValuePair("BB_HOME_URL", Const.http));
         nameValuePairs.add(new BasicNameValuePair("BB_PREVIEW", id));
         nameValuePairs.add(new BasicNameValuePair("BB_HTML", "HTML"));
         nameValuePairs.add(new BasicNameValuePair("BB_FILE", ""));
@@ -227,8 +227,8 @@ public class Util {
         String Content = content + "\nⓜ";
         String responseString = "";
 
-        HttpPost httpPost = new HttpPost("https://www.ac3korea.com/ac3korea");
-        httpPost.setHeader("referer", "https://www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&p=1&uid=" + uID);
+        HttpPost httpPost = new HttpPost(Const.http + "www.ac3korea.com/ac3korea");
+        httpPost.setHeader("referer", Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&p=1&uid=" + uID);
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("table", bbsID));
         if (type == ReplyType.NEW) {
@@ -277,8 +277,8 @@ public class Util {
 
     public boolean DeleteContent(String bbsID, String uID) {
         String responseString = "";
-        HttpPost httpPost = new HttpPost("https://www.ac3korea.com/ac3korea?table=" + bbsID + "&action=delete&uid=" + uID + "&p=1");
-        httpPost.setHeader("referer", "https://www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID + "&p=1");
+        HttpPost httpPost = new HttpPost(Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&action=delete&uid=" + uID + "&p=1");
+        httpPost.setHeader("referer", Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID + "&p=1");
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("table", bbsID));
         nameValuePairs.add(new BasicNameValuePair("action", "delete"));
@@ -308,8 +308,8 @@ public class Util {
 
     public boolean DeleteReply(String bbsID, String uID, String rID) {
         String responseString = "";
-        HttpPost httpPost = new HttpPost("https://www.ac3korea.com/ac3korea");
-        httpPost.setHeader("referer", "https://www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID + "&p=1");
+        HttpPost httpPost = new HttpPost(Const.http + "www.ac3korea.com/ac3korea");
+        httpPost.setHeader("referer", Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID + "&p=1");
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("table", bbsID));
         nameValuePairs.add(new BasicNameValuePair("action", "cdelete"));
@@ -342,8 +342,8 @@ public class Util {
 
 //    public boolean uploadFile(String path, String bbsID) {
 //        String responseString = "";
-//        HttpPost httpPost = new HttpPost("https://www.ac3korea.com/bbs/lib/module/upload/upload.php");
-//        httpPost.setHeader("referer", "https://www.ac3korea.com/bbs/lib/module/upload/upform.php?table=" + bbsID + "&orign_files=&orign_size=&html=HTML");
+//        HttpPost httpPost = new HttpPost(Const.http + "www.ac3korea.com/bbs/lib/module/upload/upload.php");
+//        httpPost.setHeader("referer", Const.http + "www.ac3korea.com/bbs/lib/module/upload/upform.php?table=" + bbsID + "&orign_files=&orign_size=&html=HTML");
 //        File file = new File(path);
 //        Log.d(TAG, "----file " + file.getName());
 //        //Multipart 객체를 선언한다.
@@ -381,7 +381,7 @@ public class Util {
     public String uploadFile(String path) {
         String uploadedImageUrl = "";
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("https://api.imgur.com/3/upload.json");
+        HttpPost httpPost = new HttpPost(Const.http + "api.imgur.com/3/upload.json");
         httpPost.setHeader("Authorization", "Client-ID " + "855d30528c4d56b");
 
         try {
@@ -393,15 +393,14 @@ public class Util {
             ent.addPart("image", bin);
             httpPost.setEntity(ent);
             HttpResponse response = httpclient.execute(httpPost);
-            final String response_string = EntityUtils.toString(response
-                    .getEntity());
+            final String response_string = EntityUtils.toString(response.getEntity());
 
             final JSONObject json = new JSONObject(response_string);
 
             //Log.d(TAG, json.toString());
 
             JSONObject data = json.optJSONObject("data");
-//            boolean success = json.getBoolean("success");
+            boolean success = json.getBoolean("success");
             uploadedImageUrl = data.optString("link");
 //            Log.d(TAG, "uploaded success : " + success);
 //            Log.d(TAG, "uploaded image url : " + uploadedImageUrl);
@@ -421,8 +420,8 @@ public class Util {
 
     public boolean Scrab(String bbsID, String uID) {
         String responseString = "";
-        HttpPost httpPost = new HttpPost("https://www.ac3korea.com/ac3korea?table=" + bbsID + "&action=scrab&uid=" + uID);
-        httpPost.setHeader("referer", "https://www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID);
+        HttpPost httpPost = new HttpPost(Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&action=scrab&uid=" + uID);
+        httpPost.setHeader("referer", Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID);
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("table", bbsID));
         nameValuePairs.add(new BasicNameValuePair("action", "scrab"));
@@ -472,8 +471,8 @@ public class Util {
 
     public boolean ReplyAnswer(String bbsID, String uID, String rID, int grade) {
         String responseString = "";
-        HttpPost httpPost = new HttpPost("https://www.ac3korea.com/ac3korea?table=" + bbsID + "&action=setanswer&grade=" + grade + "&uid=" + uID + "&ruid=" + rID + "&p=1");
-        httpPost.setHeader("referer", "https://www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID + "&p=1");
+        HttpPost httpPost = new HttpPost(Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&action=setanswer&grade=" + grade + "&uid=" + uID + "&ruid=" + rID + "&p=1");
+        httpPost.setHeader("referer", Const.http + "www.ac3korea.com/ac3korea?table=" + bbsID + "&query=view&uid=" + uID + "&p=1");
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("table", bbsID));
         nameValuePairs.add(new BasicNameValuePair("action", "setanswer"));

@@ -79,4 +79,6 @@
     <string name="reply_write_hint2">%s님의 댓글에 댓글쓰기</string>
     <string name="reply_write">쓰기</string>
     <string name="reply_empty_content">댓글 내용을 입력하세요.</string>
+
+    <string name="permission_check">파일을 다운로드 하기 위해서는 저장공간 쓰기 권한을 활성화해야 됩니다.</string>
 </resources>
