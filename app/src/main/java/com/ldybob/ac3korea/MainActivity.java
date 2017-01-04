@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -66,6 +68,19 @@ public class MainActivity extends AppCompatActivity
     private boolean isSearchOpened = false;
 
     private ParsingListTask task;
+
+    private boolean mExit = false;
+    private int EXIT_TIME = 1;
+
+    private Handler exitHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == EXIT_TIME) {
+                mExit = false;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,7 +271,15 @@ public class MainActivity extends AppCompatActivity
             if (task != null) {
                 task.cancel(true);
             }
-            super.onBackPressed();
+            if (mExit) {
+                super.onBackPressed();
+                exitHandler.removeCallbacksAndMessages(null);
+            } else {
+                mExit = true;
+                exitHandler.sendEmptyMessageDelayed(EXIT_TIME, 1000);
+                Toast.makeText(mContext, R.string.exit_message, Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 
