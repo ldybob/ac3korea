@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity
                 exitHandler.removeCallbacksAndMessages(null);
             } else {
                 mExit = true;
-                exitHandler.sendEmptyMessageDelayed(EXIT_TIME, 1000);
+                exitHandler.sendEmptyMessageDelayed(EXIT_TIME, 2000);
                 Toast.makeText(mContext, R.string.exit_message, Toast.LENGTH_SHORT).show();
             }
 
