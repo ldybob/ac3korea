@@ -20,6 +20,9 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * 로그인한 사용자 계정 정보 파싱 class
+ */
 public class MyInfoParser {
     private final String TAG = "MyInfoParser";
     Context mContext;

@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 자유게시판용 파싱 Class
+ */
 public class FreeBBSParser extends AbsParser{
     private final String TAG = "FreeBBSParser";
 

@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 스크랩 게시판용 파싱 Class
+ */
 public class ScrabParser extends AbsParser{
     private final String TAG = "ScrabParser";
 

@@ -52,6 +52,9 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+/**
+ * HttpClient 사용이 필요한 작업 및 기타 공통적으로 사용 될 수 있는 작업들에 대한 Class
+ */
 public class Util {
     private final String TAG = "Util";
     private Context mContext;

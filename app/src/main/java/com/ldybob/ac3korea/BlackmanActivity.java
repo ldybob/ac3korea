@@ -23,6 +23,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * 특정 계정을 block 설정을 위한 Activity
+ * blcok 처리 된 대상의 글이나 댓글은 표시되지 않거나 가려짐.
+ */
 public class BlackmanActivity extends AppCompatActivity {
     private final String TAG = "BlackmanActivity";
     private String filename = "user_list";

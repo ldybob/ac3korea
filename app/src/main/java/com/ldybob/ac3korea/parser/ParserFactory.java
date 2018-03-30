@@ -6,6 +6,9 @@ import com.ldybob.ac3korea.parser.impl.OtherBBSParser;
 import com.ldybob.ac3korea.parser.impl.QNABBSParser;
 import com.ldybob.ac3korea.parser.impl.ScrabParser;
 
+/**
+ * 게시판 ID 에 맞춰 Parser 객채 생성하여 return
+ */
 public class ParserFactory {
     public static IPARSER getParser(String boardID) {
         if (boardID.equals(BoardID.FREE)) {

@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Q&A 게시판용 파싱 Class
+ */
 public class QNABBSParser extends AbsParser{
     private final String TAG = "QNABBSParser";
 

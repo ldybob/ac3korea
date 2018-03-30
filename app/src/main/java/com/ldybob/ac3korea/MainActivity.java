@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
 //    private final String BOARD_URL = MAIN_URL + "/ac3korea?table=";
 
     private mySwipeRefreshLayout mSwipeRefreshLayout;
-    private ListView mListView;
+    private ListView mListView; // 파싱한 글 목록 표시하기위한 ListView
     private ListBaseAdapter adapter;
     private TextView header_title;
     private TextView header_id;
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         setTitle();
 
+        // 글 작성 Activity 로 이동시키는 floating button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +146,9 @@ public class MainActivity extends AppCompatActivity
         ContentsLoad();
     }
 
+    /**
+     * 게시판 ID에 맞는 타이틀 설정
+     */
     private void setTitle() {
         int strID = R.string.nav_free;
         if (mCurrentBoard.equals(BoardID.NOTICE)) {
@@ -184,12 +188,18 @@ public class MainActivity extends AppCompatActivity
         mListView.setAdapter(adapter);
     }
 
+    /**
+     * 현재 게시판의 글 목록 load
+     */
     private void ContentsLoad() {
         mSwipeRefreshLayout.ProgressViewInit();
         Init();
         ParsingList();
     }
 
+    /**
+     * 게시판의 글 목록에서 검색사용 시
+     */
     private void doSearch() {
         mSwipeRefreshLayout.ProgressViewInit();
         mPageNo = 1;
@@ -333,6 +343,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * 검색 layout 비활성화
+     */
     public void closeSearchLayout() {
         ActionBar action = getSupportActionBar();
         hideKeyboard();
@@ -345,6 +358,9 @@ public class MainActivity extends AppCompatActivity
         isSearchOpened = false;
     }
 
+    /**
+     * 검색 layout 활성화
+     */
     public void showSearchLayout() {
         ActionBar action = getSupportActionBar();
         action.setDisplayShowCustomEnabled(true);
@@ -386,6 +402,9 @@ public class MainActivity extends AppCompatActivity
         isSearchOpened = true;
     }
 
+    /**
+     * 검색 카테고리 팝업 표시
+     */
     public void showSearchPopup() {
         mSearchPopup = new PopupMenu(this, mCategoryBtn);
         mSearchPopup.getMenuInflater().inflate(R.menu.search_menu, mSearchPopup.getMenu());
@@ -490,6 +509,9 @@ public class MainActivity extends AppCompatActivity
         ContentsLoad();
     }
 
+    /**
+     * 로그인 한 계정 사용자 정보 파싱
+     */
     private class ParsingMyInfoTask extends AsyncTask<Void, Void, MyInfo> {
 
         @Override

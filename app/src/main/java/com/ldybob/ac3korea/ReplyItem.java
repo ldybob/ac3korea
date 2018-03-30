@@ -2,6 +2,9 @@ package com.ldybob.ac3korea;
 
 import android.graphics.Bitmap;
 
+/**
+ * 댓글 list에 사용 할 댓글 item data
+ */
 public class ReplyItem {
     private Bitmap member_icon;
     private String member_name = "";

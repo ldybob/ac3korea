@@ -2,6 +2,9 @@ package com.ldybob.ac3korea;
 
 import android.graphics.Bitmap;
 
+/**
+ * 게시판 글 목록 Item
+ */
 public class ListItem {
     private Bitmap member_icon;
     private String member_name = "";

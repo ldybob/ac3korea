@@ -17,6 +17,9 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * 로그인 시 사용되는 ID/PW를 암호화하기 위한 Class
+ */
 public class AES256Util {
     private String iv;
     private Key keySpec;

@@ -57,31 +57,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 글 본문을 표시하기 위한 Activity.
+ * 파싱한 본문 HTML코드를 WebView에서 표시함.
+ * 글 본문 뿐 아니라 comment 목록 파싱하여 표시하고 comment 추가/수정/삭제 가능.
+ */
 public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapter.RereplyListener {
     private final String TAG = "ContentActivity";
 
 //    private final String MAIN_URL = "http://ac3korea.com";
     // TODO : 댓글이 많은 경우 OOM 발생 수정필요
 
-    private TextView mTitle;
-    private TextView mMember;
-    private TextView mTime;
-    private ListView listview;
-    private ProgressBar mProgressbar;
-    private EditText mReplyTxt;
+    private TextView mTitle; // 글 제목
+    private TextView mMember; // 작성자
+    private TextView mTime; // 작성시간
+    private ListView listview; // 댓글 목록 ListView
+    private ProgressBar mProgressbar; // 페이지 로딩 상태 표시
+    private EditText mReplyTxt; // 댓글 입력
     private Button mReplyadd;
     private Button mReplyfake;
 
     private Util mUtil;
     private String urlString;
-    private ArrayList<ReplyItem> mList;
+    private ArrayList<ReplyItem> mList; // 파싱한 댓글 data
     private ReplyBaseAdapter mAdapter;
     private String boardID = ""; //현재 게시판 id
     private String uID = ""; // 현재 글 id
     private String rID = ""; // reply id
     private String mID = ""; // 작성자 id
-    private String r_content;
-    private String mClickedImageUri;
+    private String r_content; // 작성할 댓글 내용
+    private String mClickedImageUri; // 본문내에 있는 이미지 다운 시 해당 이미지 URL
     private int mPage;
     private boolean isReply = false;
     private boolean myContent = false;
@@ -289,6 +294,11 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 글 작성 시간포맷 변경하는 method
+     * @param time 전달받은 날짜 정보
+     * @return 포맷 변경한 날짜 data
+     */
     public String FormatTime(String time) {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         Date date = new Date();
@@ -301,6 +311,10 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         return format.format(date);
     }
 
+    /**
+     * 페이지 reload. 댓글 작성/삭제 등의 동작 시 새로고침 하기 위해.
+     * 본문/댓글 다시 파싱하여 표시
+     */
     private void reLoad() {
         isReply = false;
         rID = "";
@@ -343,6 +357,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
 
     }
 
+    /**
+     * 댓글쓰기 버튼 클릭 시 처리
+     */
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -362,6 +379,10 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     };
 
+    /**
+     * 댓글 작성 layout 변경 및 키보드 show/hide
+     * @param isreply
+     */
     public void ChangeReplyLayout(boolean isreply) {
         if (isreply) {
             mReplyadd.setVisibility(View.VISIBLE);
@@ -531,6 +552,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * 댓글 작성
+     */
     private class writeReplyTask extends AsyncTask<ReplyType, Void, Void> {
         ProgressDialog dialog = new ProgressDialog(ContentActivity.this);
 
@@ -557,6 +581,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * 선택한 댓글 삭제
+     */
     private class deleteReplyTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog dialog = new ProgressDialog(ContentActivity.this);
 
@@ -583,6 +610,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * 본문 HTML 코드 파싱하여 WebView 에 표시
+     */
     private class getContentTask extends AsyncTask<Void, Void, Element[]> {
 
         @Override
@@ -635,6 +665,11 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
             replyTask.execute(e[1]);
         }
 
+        /**
+         * EMBED TAG를 사용한 YouTube 영상 iFrame TAG로 변경
+         * @param e
+         * @return
+         */
         private String ChangeYouTube(Element e) {
 //            Source source = new Source(e.toString().replaceAll("</embed>", ""));
             Source source = new Source(e.toString());
@@ -671,6 +706,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * 댓글목록 파싱하여 ListView에 표시
+     */
     private class getReplyTask extends AsyncTask<Element, Void, IPARSER> {
         @Override
         protected void onPreExecute() {
@@ -709,6 +747,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * 현재 보고있는 글 삭제
+     */
     private class DeleteContentTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog dialog = new ProgressDialog(ContentActivity.this);
         @Override
@@ -737,6 +778,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * 현재 보고있는 글 Scrab
+     */
     private class ScrabTask extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -752,6 +796,9 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * Q&A 게시판 본문에 달린 댓글에 답변채택 및 감사내공
+     */
     private class ReplyAnswerTask extends AsyncTask<Integer, Void, Void> {
         ProgressDialog dialog = new ProgressDialog(ContentActivity.this);
 
@@ -777,47 +824,51 @@ public class ContentActivity extends AppCompatActivity implements ReplyBaseAdapt
         }
     }
 
+    /**
+     * 파싱한 본문 HTML 코드에서 불필요한 속성 제거 및 필요한 속성 추가
+     * @param bodyHTML
+     * @return
+     */
     public String getHtmlData(String bodyHTML) {
 
-        String head = "<head>" +
-                "<style type=\"text/css\">img{max-width: 100%; width:auto; height: auto; !important;}" +
-//                "div{max-width: 100%; width:auto; height: auto; !important;}" +
-                "embed{max-width: 100%; width:auto; height: auto; !important;}" +
-                "iframe{max-width: 100%; width:auto; height: auto; !important;}" +
-                "object{max-width: 100%; width:auto; height: auto; !important;}</style>" +
-                "<script type=\"text/javascript\">" +
-                "function removeStyle() {" +
+        StringBuilder headerBuilder = new StringBuilder("<head>")
+                .append("<style type=\"text/css\">img{max-width: 100%; width:auto; height: auto; !important;}")
+                .append("embed{max-width: 100%; width:auto; height: auto; !important;}")
+                .append("iframe{max-width: 100%; width:auto; height: auto; !important;}")
+                .append("object{max-width: 100%; width:auto; height: auto; !important;}</style>")
+                .append("<script type=\"text/javascript\">")
+                .append("function removeStyle() {")
                 // + 이미지 태그 내 속성 제거
-                "var l = document.getElementsByTagName(\"IMG\");" +
-                "for(var i = 0; i < l.length; i++) {" +
-                "l[i].removeAttribute(\"style\");" +
-                "l[i].removeAttribute(\"onload\");" +
-                "l[i].removeAttribute(\"onmouseover\");" +
-                "}" +
+                .append("var l = document.getElementsByTagName(\"IMG\");")
+                .append("for(var i = 0; i < l.length; i++) {")
+                .append("l[i].removeAttribute(\"style\");")
+                .append("l[i].removeAttribute(\"onload\");")
+                .append("l[i].removeAttribute(\"onmouseover\");")
+                .append("}")
                 // - img 태그 내 속성 제거
-
                 // + div 태그 내 속성 제거
-                "l = document.getElementsByTagName(\"div\");" +
-                "for(var i = 0; i < l.length; i++) {" +
-                "l[i].removeAttribute(\"style\");" +
-                "}" +
+                .append("l = document.getElementsByTagName(\"div\");")
+                .append("for(var i = 0; i < l.length; i++) {")
+                .append("l[i].removeAttribute(\"style\");")
+                .append("}")
                 //- div 태그 내 속성 제거
-
                 // + 스크린샷/만화 란에 이미지 첨부한 경우 url이 일부만 표시되어 변경
-                "var y = document.getElementsByTagName(\"img\");" +
-                "for(var i = 0; i < y.length; i++) {" +
-                "var z = y[i].getAttribute(\"src\");" +
-                "if ((z.indexOf(\"bbs/table/shaphwa/upload/\") >= 0)" +
-                "|| z.indexOf(\"bbs/table/screenshot/upload/\") >= 0) {" +
-                "y[i].setAttribute(\"src\", \"" + Const.http + "www.ac3korea.com/\" + z);" +
-                "}" +
-                "}" +
+                .append("var y = document.getElementsByTagName(\"img\");")
+                .append("for(var i = 0; i < y.length; i++) {")
+                .append("var z = y[i].getAttribute(\"src\");")
+                .append("if ((z.indexOf(\"bbs/table/shaphwa/upload/\") >= 0)")
+                .append("|| z.indexOf(\"bbs/table/screenshot/upload/\") >= 0) {")
+                .append("y[i].setAttribute(\"src\", \"" + Const.http + "www.ac3korea.com/\" + z);")
+                .append("}")
+                .append("}")
                 // - 스크린샷/만화 란에 이미지 첨부한 경우 url이 일부만 표시되어 변경
-                "}" +
-                "</script>" +
-                "</head>";
+                .append("}")
+                .append("</script>")
+                .append("</head>");
+
+        String head = headerBuilder.toString();
         String body = bodyHTML.replaceAll("https://ssl-proxy.my-addr.org/myaddrproxy.php/", "");
-        return "<html>" + head + "<body onload=removeStyle()>" + body + "<br><br></body></html>";
+        return new StringBuilder("<html>").append(head).append("<body onload=removeStyle()>").append(body).append("<br><br></body></html>").toString();
     }
 
     @Override

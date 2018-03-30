@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 뉴스/만화/스크린샷 게시판용 파싱 Class
+ */
 public class OtherBBSParser extends AbsParser{
     private final String TAG = "OtherBBSParser";
 

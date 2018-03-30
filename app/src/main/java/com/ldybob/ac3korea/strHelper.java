@@ -1,9 +1,5 @@
 package com.ldybob.ac3korea;
 
-/**
- * 이 클래스는 대학생(dㅡㅡb) 님 소스 봍북;;
- * https://code.google.com/archive/p/ac3korea-mobile-android/
- */
 public class strHelper {
     public static String bbsContent(String a)
     {
@@ -94,7 +90,6 @@ public class strHelper {
                 case '®': sb.append("&reg;");break;
                 case '©': sb.append("&copy;");break;
                 case '€': sb.append("&euro;"); break;
-                // be carefull with this one (non-breaking whitee space)
                 case ' ': sb.append("&nbsp;");break;
 
                 default:  sb.append(c); break;

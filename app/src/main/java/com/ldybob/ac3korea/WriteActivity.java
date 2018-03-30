@@ -17,16 +17,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 새 글 작성 시 사용되는 Activity
+ */
 public class WriteActivity extends AppCompatActivity {
     private final String TAG = "WriteActivity";
 
     final int REQ_CODE_SELECT_IMAGE=100;
 
-    Button mWriteBtn;
-    Button mAttachBtn;
-    EditText mTitle;
-    EditText mContent;
-    TextView mFileName;
+    Button mWriteBtn; // 글 작성 버튼
+    Button mAttachBtn; // 파일 첨부 버튼
+    EditText mTitle; // 글 제목 EditText
+    EditText mContent; // 글 본문 EditText
+    TextView mFileName; // 첨부파일 이름표시하기 위한 TextView
 
     private Util mUtil;
     private String bbsID;

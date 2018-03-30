@@ -1,5 +1,8 @@
 package com.ldybob.ac3korea;
 
+/**
+ * 로그인 한 사용자의 계정 data
+ */
 public class MyInfo {
     private String title;
     private String id;
